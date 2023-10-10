@@ -2,28 +2,16 @@ import { useState } from "react";
 import TopNavigator from "../components/TopNavigator";
 import SearchBar from "../components/SearchBar";
 import { settings } from "../constants";
+import SettingLabel from "../components/SettingLabel";
 
 const Main = () => {
   const [search, setSearch] = useState("");
   return (
-    <div>
+    <div className="">
       <TopNavigator title="ဆက်တင်များ" />
       <SearchBar search={search} onSearchChange={setSearch} />
-      {settings.map((setting) => {
-        return (
-          <div
-            className="flex justify-between px-3 w-full py-1"
-            key={setting.name}
-          >
-            <div className="flex gap-2">
-              {setting.icon}
-              {setting.name}
-            </div>
-            <div className=" text-gray-700 text-lg font-bold">
-              {`>`}
-            </div>
-          </div>
-        );
+      {settings.map((setting, i) => {
+        return <SettingLabel key={setting.name + i} setting={setting} />;
       })}
     </div>
   );

@@ -3,7 +3,7 @@ const SearchBar = ({ search, onSearchChange }) => {
   return (
     <div className="relative">
       <input
-        className="bg-gray-100 rounded-full px-3 py-2 w-full"
+        className="bg-gray-100 rounded-full px-3 py-2 w-full outline-none"
         type="text"
         placeholder="ဆက်တင်များ ရှာရန်"
         value={search}
