@@ -4,8 +4,9 @@ import spinner from "/ATB3o.gif";
 import BigHeading from "../components/BigHeading";
 import { twMerge } from "tailwind-merge";
 import BackButton from "../components/BackButton";
+import CustomCheckbox from "../components/CustomCheckbox";
 
-// import SelectTimeRange from "../components/SelectTimeRange";
+import SelectTimeRange from "../components/SelectTimeRange";
 
 const DeliveryDateAndTime = () => {
   const [isloading, setIsLoading] = useState(false);
@@ -36,6 +37,10 @@ const DeliveryDateAndTime = () => {
     setDayCheckboxes(newCheckboxes);
   };
 
+  //handle time change
+  const [timeRange, setTimeRange] = useState({openTime:"" , closeTime:""})
+  console.log(timeRange)
+
   let saveButton;
 
   if (!isloading && settingsHasChanged) {
@@ -52,7 +57,7 @@ const DeliveryDateAndTime = () => {
   }
 
   return (
-    <div>
+    <div className="">
       <div className={"bg-white sticky top-0 z-40 "}>
 
         {/* Top navigator  */}
@@ -65,7 +70,7 @@ const DeliveryDateAndTime = () => {
         <BigHeading title={"ပို့ဆောင်သောရက်နှင့်အချိန်"} />
 
         {/* list of days checkboxes */}
-        <div className="flex flex-col gap-4">
+        <div className="flex flex-col gap-4 mb-5">
           <div className="flex justify-between ">
             <p className="font-semibold">ပို့ဆောင်သောရက်</p>
             <label className="mr-4 text-gray-800">
@@ -89,20 +94,21 @@ const DeliveryDateAndTime = () => {
                 )}
               >
                 {day}
-                <input
+                {/* <input
                   className="accent-white"
                   type="checkbox"
                   name={day}
                   checked={dayCheckboxes[day]}
                   onChange={handleDayCheckboxChange}
-                />
+                /> */}
+                <CustomCheckbox name={day}  checked={dayCheckboxes[day]} onChange={handleDayCheckboxChange}/>
               </label>
             ))}
           </div>
         </div>
 
         {/* section for picking time */}
-        {/* <SelectTimeRange/> */}
+        <SelectTimeRange title={'ပို့ဆောင်ချိန်'} timeRange={timeRange} setTimeRange={setTimeRange}  />
       </div>
     </div>
   );

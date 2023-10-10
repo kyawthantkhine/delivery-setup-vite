@@ -58,7 +58,9 @@ const BpCheckedIcon = styled(BpIcon)({
       checkedIcon={<BpCheckedIcon />}
       icon={<BpIcon />}
       inputProps={{ 'aria-label': 'Checkbox demo' }}
-      {...props}
+      name={props.name}
+      checked={props.checked}
+      onChange={props.onChange}
     />
   );
 }
